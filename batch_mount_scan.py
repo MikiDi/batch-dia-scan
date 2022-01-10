@@ -31,7 +31,6 @@ class BatchMountScanner():
         matches = [ BatchMountScanner.FILENAME_REGEX.match(s).groupdict() for s in listing ]
         if matches:
             parsed_matches = [{"mount_index": int(m["mount_index"]), "frame_index": int(m["frame_index"])} for m in matches]
-            print(parsed_matches)
             s_matches = multisort(parsed_matches, (("mount_index", False), ("frame_index", False)))
             return s_matches[-1]
         return None
