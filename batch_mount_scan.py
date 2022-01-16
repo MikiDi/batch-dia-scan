@@ -28,7 +28,11 @@ class BatchMountScanner():
 
     def parse_current_mount_frame_index(self):
         listing = os.listdir(self.target_folder)
-        matches = [ BatchMountScanner.FILENAME_REGEX.match(s).groupdict() for s in listing ]
+        matches = []
+        for filename in listing:
+            match = BatchMountScanner.FILENAME_REGEX.match(filename)
+            if (match):
+                matches.append(match.groupdict())
         if matches:
             parsed_matches = [{"mount_index": int(m["mount_index"]), "frame_index": int(m["frame_index"])} for m in matches]
             s_matches = multisort(parsed_matches, (("mount_index", False), ("frame_index", False)))
