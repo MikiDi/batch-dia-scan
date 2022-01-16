@@ -71,7 +71,7 @@ if __name__ == '__main__':
     for i in range(len(positions)):
         frame_path = scanner.next_frame_path(mount_index, i + 1)
         cmd = generate_scan_command_for_position(scanner_name, positions[i], frame_path)
-        print(f"Scanning frame {i + 1} of {len(positions) + 1} ...")
+        print(f"Scanning frame {i + 1} of {len(positions)} ...")
         proc_res = subprocess.run(cmd, check=True, shell=True)
 
     
